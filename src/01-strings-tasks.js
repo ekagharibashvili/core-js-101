@@ -231,6 +231,7 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
+
 function isString(value) {
   if (typeof value === 'string' || value instanceof String) {
     return true;
@@ -262,8 +263,54 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+
+function getCardId(value) {
+  let val;
+  let distance = 13;
+  if (value.charAt(1) === '0' && value.charAt(2) === '♣') {
+    val = 9 + (distance * 0);
+  }
+  if (value.charAt(1) === '0' && value.charAt(2) === '♦') {
+    val = 9 + distance;
+  }
+  if (value.charAt(1) === '0' && value.charAt(2) === '♥') {
+    val = 9 + (distance * 2);
+  }
+  if (value.charAt(1) === '0' && value.charAt(2) === '♠') {
+    val = 9 + (distance * 3);
+  }
+  if (value.charAt(1) === '♣') {
+    distance *= 0;
+  }
+  if (value.charAt(1) === '♦') {
+    distance *= 1;
+  }
+  if (value.charAt(1) === '♥') {
+    distance *= 2;
+  }
+  if (value.charAt(1) === '♠') {
+    distance *= 3;
+  }
+  if (value.charAt(0) === 'A') {
+    val = 0 + distance;
+    return val;
+  }
+  if (value.charAt(0) === 'J') {
+    val = 10 + distance;
+    return val;
+  }
+  if (value.charAt(0) === 'Q') {
+    val = 11 + distance;
+    return val;
+  }
+  if (value.charAt(0) === 'K') {
+    val = 12 + distance;
+    return val;
+  }
+  if (typeof Number(value.charAt(0)) === 'number' && value.length === 2) {
+    val = Number(value.charAt(0)) - 1 + distance;
+  }
+  return val;
 }
 
 
