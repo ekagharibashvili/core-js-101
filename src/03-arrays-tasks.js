@@ -425,10 +425,39 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  const arr1 = arr.sort((a, b) => {
+    const first = a.city.toUpperCase();
+    const sec = b.city.toUpperCase();
+    if (first < sec) {
+      return -1;
+    }
+    if (first > sec) {
+      return 1;
+    }
+    return 0;
+  });
+  const arr2 = arr1.sort((a, b) => {
+    const first = a.country.toUpperCase();
+    const sec = b.country.toUpperCase();
+    if (first < sec) {
+      return -1;
+    }
+    if (first > sec) {
+      return 1;
+    }
+    return 0;
+  });
+  return arr2;
 }
-
+/* console.log(sortCitiesArray( [
+       { country: 'Russia',  city: 'Moscow' },
+       { country: 'Belarus', city: 'Minsk' },
+       { country: 'Poland',  city: 'Warsaw' },
+       { country: 'Russia',  city: 'Saint Petersburg' },
+      { country: 'Poland',  city: 'Krakow' },
+     { country: 'Belarus', city: 'Brest' }
+     ])) */
 /**
  * Creates an indentity matrix of the specified size
  *
@@ -464,10 +493,10 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return Array(end - start + 1).fill().map((_, idx) => start + idx);
 }
-
+// console.log(getIntervalArray(1, 5));
 /**
  * Returns array containing only unique values from the specified array.
  *
@@ -479,10 +508,10 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return [...new Set(arr)];
 }
-
+// console.log(distinct([ 1, 2, 3, 3, 2, 1 ]))
 /**
  * Groups elements of the specified array by key.
  * Returns multimap of keys extracted from array elements via keySelector callback
@@ -531,10 +560,16 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  let newArr = [];
+  if (typeof arr[0] === 'object') {
+    newArr = arr.map(childrenSelector).join().split(',').map((x) => Number(x));
+  } else {
+    newArr = arr.map(childrenSelector).join().split(',');
+  }
+  return newArr;
 }
-
+// console.log(selectMany( [[1, 2], [3, 4], [5, 6]], (x) => x));
 
 /**
  * Returns an element from the multidimentional array by the specified indexes.
@@ -551,7 +586,6 @@ function selectMany(/* arr, childrenSelector */) {
 function getElementByIndexes(/* arr, indexes */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Swaps the head and tail of the specified array:
@@ -571,10 +605,15 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const length = Math.floor(arr.length / 2);
+  const firstArr = arr.splice(0, length);
+  const secArr = arr.splice(arr.length - length, length);
+  const newArr = arr.concat(firstArr);
+  const last = secArr.concat(newArr);
+  return last;
 }
-
+// console.log(swapHeadAndTail([ 1, 2, 3, 4, 5, 6, 7, 8 ]))
 
 module.exports = {
   findElement,
