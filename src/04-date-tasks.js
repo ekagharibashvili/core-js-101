@@ -19,10 +19,10 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  return Date.parse(value);
 }
-
+// console.log(parseDataFromIso8601('December 17, 1995 03:24:00'));
 /**
  * Parses an ISO 8601 string date representation into date value
  * For ISO 8601 date specification refer to : https://en.wikipedia.org/wiki/ISO_8601
@@ -34,11 +34,9 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return Date.parse(value);
 }
-
-
 /**
  * Returns true if specified date is leap year and false otherwise
  * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
@@ -56,7 +54,6 @@ function parseDataFromIso8601(/* value */) {
 function isLeapYear(/* date */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the string represention of the timespan between two dates.
@@ -76,7 +73,6 @@ function isLeapYear(/* date */) {
 function timeSpanToString(/* startDate, endDate */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock
