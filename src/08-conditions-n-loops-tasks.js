@@ -169,7 +169,6 @@ function isInsideCircle(/* circle, point */) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Returns the first non repeated char in the specified strings otherwise returns null.
  *
@@ -181,10 +180,10 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  return str.split('').filter((character, index, obj) => obj.indexOf(character) === obj.lastIndexOf(character)).shift();
 }
-
+// console.log(findFirstSingleChar('The quick brown fox jumps over the lazy dog'))
 
 /**
  * Returns the string representation of math interval,
@@ -208,10 +207,42 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let symb1 = '';
+  let symb2 = '';
+  let res = '';
+  if (a > b) {
+    if (isStartIncluded === true) {
+      symb1 = ']';
+    }
+    if (isStartIncluded === false) {
+      symb1 = ')';
+    }
+    if (isEndIncluded === true) {
+      symb2 = '[';
+    }
+    if (isEndIncluded === false) {
+      symb2 = '(';
+    }
+    res = `${symb2}${b}, ${a}${symb1}`;
+  } else {
+    if (isStartIncluded === true) {
+      symb1 = '[';
+    }
+    if (isStartIncluded === false) {
+      symb1 = '(';
+    }
+    if (isEndIncluded === true) {
+      symb2 = ']';
+    }
+    if (isEndIncluded === false) {
+      symb2 = ')';
+    }
+    res = `${symb1}${a}, ${b}${symb2}`;
+  }
+  return res;
 }
-
+// console.log(getIntervalString(5, 3, false, false))
 
 /**
  * Reverse the specified string (put all chars in reverse order)
