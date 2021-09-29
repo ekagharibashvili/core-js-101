@@ -256,10 +256,10 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
-
+// console.log(reverseString('The quick brown fox jumps over the lazy dog'))
 
 /**
  * Reverse the specified integer number (put all digits in reverse order)
@@ -273,10 +273,10 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return num.toString().split('').reverse().join('');
 }
-
+// console.log(reverseInteger(12345))
 
 /**
  * Validates the CCN (credit card number) and return true if CCN is valid
@@ -301,6 +301,7 @@ function reverseInteger(/* num */) {
 function isCreditCardNumber(/* ccn */) {
   throw new Error('Not implemented');
 }
+
 
 /**
  * Returns the digital root of integer:
